@@ -3,6 +3,7 @@ package com.pankaj.service;
 import org.springframework.web.client.RestClientException;
 
 import com.pankaj.model.FigiList;
+import com.pankaj.model.Search;
 
 public interface FigiService {
 
@@ -11,5 +12,7 @@ public interface FigiService {
 	String error();
 
 	String success(String message);
+
+	FigiList search(Search search);
 
 }

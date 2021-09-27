@@ -33,6 +33,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.pankaj.model.AppProperties;
 import com.pankaj.model.FigiList;
+import com.pankaj.model.Search;
 import com.pankaj.model.exception.FigiExceptionHandler;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -140,4 +141,15 @@ public class FigiServiceImpl implements FigiService {
 		}
 		return null;
 	}
+	
+	public FigiList search(Search search) {
+		LOGGER.info("Inside search method");
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<Search> entity = new HttpEntity<>(search, headers);
+		return this.restTemplate.postForObject(app.getSearchUrl(), entity, FigiList.class);
+	}
+
 }

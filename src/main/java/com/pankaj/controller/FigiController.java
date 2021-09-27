@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pankaj.model.Figi;
 import com.pankaj.model.FigiList;
+import com.pankaj.model.Search;
 import com.pankaj.model.exception.BusinessException;
 import com.pankaj.service.FigiService;
 
@@ -73,5 +74,15 @@ public class FigiController {
 	public String swaggerUi() {
 		LOGGER.info("Request received for /swagger-ui.html");
 		return "redirect:/swagger-ui.html";
+	}
+	
+	@PostMapping("/api/v2/search")
+	@ApiOperation(value = "search")
+	@ApiImplicitParams({
+		  @ApiImplicitParam(name = "app-id", value = "figi", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class, example = "figi")
+		})
+	public ResponseEntity<Object> serchQuery(@RequestBody Search search) {
+		LOGGER.info("Request received for /api/v2/search input: {}", search);
+		return new ResponseEntity<>(figiService.search(search), HttpStatus.OK);
 	}
 }
