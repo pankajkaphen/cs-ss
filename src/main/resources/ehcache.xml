@@ -1,0 +1,11 @@
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns='http://www.ehcache.org/v3'
+	xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
+	<ehcache>
+		<diskStore path="java.io.tmpdir" />
+		<defaultCache maxElementsInMemory="5" eternal="true"
+			overflowToDisk="false" timeToLiveSeconds="60" />
+		<cache name="figiCache" maxElementsInMemory="5"
+			eternal="false" overflowToDisk="false" timeToLiveSeconds="60" />
+	</ehcache>
+</config>  
